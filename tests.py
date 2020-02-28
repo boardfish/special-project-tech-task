@@ -19,6 +19,20 @@ class TestGetBirthDay(unittest.TestCase):
         self.assertRaises(ValueError, lambda: GetBirthDay(32, 1, 1900))
         self.assertRaises(ValueError, lambda: GetBirthDay(1, 13, 1900))
     
+    def test_errors_if_dates_outside_month_limits(self):
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 1, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(30, 2, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 3, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(31, 4, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 5, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(31, 6, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 7, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 8, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(31, 9, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 10, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(31, 11, 1900))
+        self.assertRaises(ValueError, lambda: GetBirthDay(32, 12, 1900))
+    
     def test_outputs_within_limits(self):
         gbd = GetBirthDay(1, 1, 1900)
         self.output_over_lower_limit(gbd, -1)
