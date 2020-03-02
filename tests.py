@@ -71,13 +71,12 @@ class TestGetBirthDay(unittest.TestCase):
     def test_important_dates(self):
         # My birthday
         self.assertEqual(GetBirthDay(8, 4, 1998).day_index(), 2)
-        # Christmas this year
-        self.assertEqual(GetBirthDay(25, 12, 2020).day_index(), 4)
         # Super Smash Bros. Ultimate's release date
-        self.assertEqual(GetBirthDay(6, 12, 2018).day_index(), 4)
+        self.assertEqual(GetBirthDay(6, 12, 2018).day_index(), 3)
         # Satoru Iwata's birthday
         self.assertEqual(GetBirthDay(6, 12, 1959).day_index(), 6)
         # Kamen Rider's first airdate
+        self.assertEqual(GetBirthDay(3, 4, 1971).day_index(), 5)
 
 if __name__ == '__main__':
     unittest.main()

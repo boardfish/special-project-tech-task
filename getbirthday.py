@@ -3,7 +3,7 @@ class GetBirthDay:
                  "Thursday", "Friday", "Saturday", "Sunday"]
     MONTHS = {
         "January": 31,
-        "February": 29,
+        "February": 28,
         "March": 31,
         "April": 30,
         "May": 31,
@@ -50,13 +50,22 @@ class GetBirthDay:
     def get_start_of_month(self, month_number):
         if month_number < 0 or month_number > 11:
             raise ValueError
-        return sum(list(self.MONTHS.values())[:month_number])
+        leap_day = (self.is_leap_year() and month_number > 1) * 1
+        return sum(list(self.MONTHS.values())[:month_number]) + leap_day
 
     def get_day_of_week(self, day_of_year):
         return (day_of_year % 7)
+    
+    def get_offset_for_year(self, year = None):
+        if not year:
+            year = self.year
+        start_date_differences = [
+            1 + (self.is_leap_year(year) * 1) for year in range(year, 2020)
+            ]
+        return self.get_day_of_week(2 - sum(start_date_differences))
 
     def day_index(self):
-        offset = 2
+        offset = self.get_offset_for_year()
         return self.get_day_of_week(
             self.get_start_of_month(self.month - 1) + self.day - 1 + offset
         )
