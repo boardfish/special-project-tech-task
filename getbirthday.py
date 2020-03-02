@@ -27,6 +27,15 @@ class GetBirthDay:
         if (day > self.get_upper_limit_for_month()):
             raise ValueError
         self.day = day
+    
+    def is_leap_year(self, year = None):
+        if not year:
+            year = self.year
+        year_divisible_by_4 = year % 4 == 0
+        year_divisible_by_100 = year % 100 == 0
+        year_divisible_by_400 = year % 100 == 0
+        return ((year_divisible_by_4 and not year_divisible_by_100) \
+            or year_divisible_by_400)
 
     def get_upper_limit_for_month(self):
         upperLimits = [31, None, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -34,7 +43,7 @@ class GetBirthDay:
         if (self.month - 1) != 1:
             return upperLimits[self.month - 1]
 
-        if (((self.year % 4 == 0) and not (self.year % 100 == 0)) or (self.year % 400 == 0)):
+        if self.is_leap_year():
             return 29
         return 28
 
