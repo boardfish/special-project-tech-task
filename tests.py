@@ -7,10 +7,10 @@ class TestGetBirthDay(unittest.TestCase):
         pass
 
     def output_under_upper_limit(self, gbd_instance, upperLimit):
-        self.assertLess(gbd_instance.getBirthDay(), upperLimit)
+        self.assertLess(gbd_instance.day_index(), upperLimit)
     
     def output_over_lower_limit(self, gbd_instance, lowerLimit):
-        self.assertGreater(gbd_instance.getBirthDay(), lowerLimit)
+        self.assertGreater(gbd_instance.day_index(), lowerLimit)
 
     #=======================
     # Months
@@ -43,6 +43,16 @@ class TestGetBirthDay(unittest.TestCase):
             self.output_over_lower_limit(gbd, -1)
             self.output_under_upper_limit(gbd, 7)
 
+    def test_important_dates_this_year(self):
+        # My birthday
+        self.assertEqual(GetBirthDay(8, 4, 2020).day_index(), 2)
+        # Christmas this year
+        self.assertEqual(GetBirthDay(25, 12, 2020).day_index(), 4)
+        # Super Smash Bros. Ultimate's second anniversary
+        self.assertEqual(GetBirthDay(6, 12, 2020).day_index(), 6)
+        # The 2020 Olympics begin
+        self.assertEqual(GetBirthDay(24, 7, 2020).day_index(), 4)
+
     #==========================
     # Years
     #==========================
@@ -60,15 +70,14 @@ class TestGetBirthDay(unittest.TestCase):
     @unittest.skip("Delete this line for the extension task")
     def test_important_dates(self):
         # My birthday
-        self.assertEquals(GetBirthDay(8, 4, 1998).getBirthDay(), 2)
+        self.assertEqual(GetBirthDay(8, 4, 1998).day_index(), 2)
         # Christmas this year
-        self.assertEquals(GetBirthDay(25, 12, 2020).getBirthDay(), 4)
+        self.assertEqual(GetBirthDay(25, 12, 2020).day_index(), 4)
         # Super Smash Bros. Ultimate's release date
-        self.assertEquals(GetBirthDay(6, 12, 2018).getBirthDay(), 4)
+        self.assertEqual(GetBirthDay(6, 12, 2018).day_index(), 4)
         # Satoru Iwata's birthday
-        self.assertEquals(GetBirthDay(6, 12, 1959).getBirthDay(), 6)
+        self.assertEqual(GetBirthDay(6, 12, 1959).day_index(), 6)
         # Kamen Rider's first airdate
-        self.assertEquals(GetBirthDay(6, 12, 1959).getBirthDay(), 5)
 
 if __name__ == '__main__':
     unittest.main()
