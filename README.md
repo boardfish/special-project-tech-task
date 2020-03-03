@@ -6,20 +6,49 @@
 but it's applicable just about anywhere else, both inside and outside the field
 of computer science. It's a **version control** tool - you can keep track of
 different versions of your code, whether they're full releases or just a
-one-line fix. This *can* be used to establish which changes were made in each
-update of a piece of software, but at any level, every **commit** you make
-in `git` tells a story - decisions that were made, ways in which things were
-implemented, and even some mishaps.
+one-line fix. `git` has a variety of benefits, such as:
+
+- pinpointing where something broke in your code
+- enabling collaboration with others, using branches
+- allowing you to more easily back up your code and work offline
+
+Whatever your use for it, every **commit** you make in `git` tells a story -
+decisions that were made, ways in which things were implemented, and even some
+mishaps.
+
+## How to use `git`
+
+### Committing
 
 **Commits** are the string that ties `git` together. They're **snapshots** of 
-the code at some point in time, with a message attached to detail what changed.
+the code at some point in time, with a message attached to detail what changed. Let's look at how to commit.
 
-## Why do folks use `git`?
+When you edit a file normally, the process looks like this:
 
-### Keeping track of the development process
+1. Edit the file.
+2. Save the file.
 
-Instead of using comments to document changes and choices, sometimes they'll be 
-documented in commit history. Let's have a look:
+Git gives you a few more things you need to do afterwards:
+
+3. **Stage** your files.
+4. **Commit**.
+
+You might also then **push**. But what does all this mean?
+
+#### Staging files
+
+If you **stage** a file, you add the changes you've made to the file into the **staging area**. Changes in the staging area are marked as being **part of this commit**.
+
+Often you'll just want to stage everything you've changed, but sometimes you'll want to be more picky about it. So if you want to:
+
+- add everything, even files you haven't committed before, to the stage: `git add -A`
+- add only files you've changed to the stage: `git add -p`
+- add files to the stage: `git add <filename>`
+- remove files from the stage (without changing or deleting them): `git reset <filename>`
+
+Then, all that's left to do is to `git commit` and supply a descriptive message about the changes you've just made, such as "Write section about staging files". And after that, it's time to `git push` your code over to whichever server you're keeping it on and synchronise your changes.
+
+Let's have a look at how commits show up in `git log`:
 
 ```
 commit c6813f8f4805d752b7480c585c3cda669b576365
@@ -33,7 +62,7 @@ Date:   Mon Mar 2 14:44:49 2020 +0000
     only.
 ```
 
-So, what have we go here?
+So, what have we got here?
 
 The long hex string at the top is a **commit hash**. It might seem totally random, but it's actually
 [a lot of information about the commit encoded with SHA-1](https://gist.github.com/masak/2415865). Okay, you didn't need
