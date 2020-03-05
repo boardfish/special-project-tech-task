@@ -14,14 +14,14 @@ one-line fix. `git` has a variety of benefits, such as:
 
 Whatever your use for it, every **commit** you make in `git` tells a story -
 decisions that were made, ways in which things were implemented, and even some
-mishaps.
+mishaps. It's a bit like writing a diary and taking a timelapse of your code at the same time!
 
 ## How to use `git`
 
 ### Committing
 
 **Commits** are the string that ties `git` together. They're **snapshots** of 
-the code at some point in time, with a message attached to detail what changed. Let's look at how to commit.
+the code at some point in time, with a message attached to detail what changed. Let's look at how to make a commit.
 
 When you edit a file normally, the process looks like this:
 
@@ -30,21 +30,64 @@ When you edit a file normally, the process looks like this:
 
 Git gives you a few more things you need to do afterwards:
 
-3. **Stage** your files.
+3. **Stage** your changes.
 4. **Commit**.
 
 You might also then **push**. But what does all this mean?
 
 #### Staging files
 
-If you **stage** a file, you add the changes you've made to the file into the **staging area**. Changes in the staging area are marked as being **part of this commit**.
+If you **stage** a file, you add the changes you've made to the file onto the **stage**. When you then **commit**, all changes on the stage are included in that commit.
+
+To stage a file, use the `git add` command. `git add <filename>` stages the file(s) you give it. 
+
+You might also stage a file by accident - perhaps there's a file with some passwords in that you only use on your device? Remove files from the stage (without changing or deleting them) with `git reset <filename>`.
+
+To get an idea of what's been staged and what hasn't, use `git status`. `git status` reports back like this:
+
+```
+On branch readme
+Your branch is up-to-date with 'origin/readme'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        file_not_committed_yet
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+- `README.md` is a file that I've committed before. Git knows it exists, but I've made changes to it that I haven't
+  committed yet.
+- `file_not_committed_yet` is a file that I've never added to a commit before. Git isn't **tracking** this file - it
+  doesn't know it exists yet.
+
+If I run `git add README.md`, it'll show up like this:
+
+```
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   README.md
+```
+
+This means my changes to `README.md` are staged, but if I edit the file and save it again, any further changes I make
+will need to be staged again.
+
+##### Shortcuts
 
 Often you'll just want to stage everything you've changed, but sometimes you'll want to be more picky about it. So if you want to:
 
 - add everything, even files you haven't committed before, to the stage: `git add -A`
 - add only files you've changed to the stage: `git add -p`
-- add files to the stage: `git add <filename>`
-- remove files from the stage (without changing or deleting them): `git reset <filename>`
+
+#### Committing
 
 Then, all that's left to do is to `git commit` and supply a descriptive message about the changes you've just made, such as "Write section about staging files". And after that, it's time to `git push` your code over to whichever server you're keeping it on and synchronise your changes.
 
@@ -151,5 +194,5 @@ dates from across history. Pay particular attention to **leap years**!
 
 ### Tips
 
-- This year starts on a Wednesday (`2`)...but what did last year start on? Or the year before?
+- This year starts on a Wednesday (`2`)...but what did last year start on? Or the year before? There's a pattern here...
 - Leap years are divisible by 4, but multiples of 100 aren't leap years unless they're *also* divisible by 400. 
