@@ -24,6 +24,7 @@ class GetBirthDay:
         self.day = day
 
     def day_index(self):
-        # TODO: Figure out what day it is, and return 0-6 inclusive depending on
-        #       what day it is - 0 is Monday, 1 is Tuesday, and so on.
+        # TODO: Figure out what day the date corresponds to, and return
+        #       0-6 inclusive depending on what day it is - 0 is Monday, 1 is
+        #       Tuesday, and so on.
         return 0

@@ -186,7 +186,7 @@ OK (skipped=2)
 - The modulo operator (`%`) is good for wrapping numbers within a range. It's normally used for checking if numbers are
 - even (`x % 2 == 0`), but where might you use it here?
 
-## This is to go even further beyond!
+## One more thing...
 
 If you manage to get the tests passing, remove the lines starting with `@unittest.skip(...)` to reveal another set of
 tests. These will push you to get the program working for **different years**, so you can have a look at some other
